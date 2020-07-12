@@ -1,0 +1,72 @@
+<%- include ("../layouts/adminheader") %>
+
+<h2 class="page-title"> Products </h2>
+<a href="/admin/products/add-product" class="btn btn-info"> Add a new Product!!</a>
+<br><br>
+
+
+<table class="table table-striped alignmiddle">
+    <thead>
+        <tr class="home">
+            <th>Product</th>
+            <th>DummyPrice</th>
+            <th>Price</th>
+            <th>Kg</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Product Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody id=>
+
+        <% productsVar.forEach(function(product){ %>
+            <tr id="id_<%= product._id %>" class="<%= product.slug %>">
+                <td> <%= product.title %> </td>
+                <td> $<%= parseFloat(product.dummyprice).toFixed(2) %> </td>
+                <td> $<%= parseFloat(product.price).toFixed(2) %> </td>
+                <td> <%= product.kg %> </td>
+                <td> <%= product.category %> </td>
+                <td> <%= product.subcategory %> </td>
+                <td> 
+                    <% if (product.image == "") { %>
+                        <img id="noimage" src="/images/noimage.jpg" >
+                    <% } else { %>
+                        <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
+                    <% } %>   
+                </td>
+                <td> <a href="/admin/products/edit-product/<%= product.id %>" > Edit </a> </td>
+                <td> <a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>"> Delete </a> </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<script  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"> </script>
+<script>
+    // To sort in serial order and to drag the tr's.
+    $('tbody').sortable({
+        // Selecting all the tr except .home class tr
+        items: "tr:not('.home')",
+        placeholder: "ui-state-highlight",
+        update: function() {
+            var ids = $('tbody').sortable("serialize");
+            var url = "/admin/products/reorder-products";
+
+            $.post(url, ids);
+        }
+    });
+</script>
+
+ <script type="text/javascript">
+
+    $('tbody').sortable();
+  
+  </script> 
+
+<%- include ("../layouts/adminfooter") %>
+
+
+
+
+

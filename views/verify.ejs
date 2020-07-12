@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> MahadevaMart OTP Verify </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+		<link href="/css/style.css" rel="stylesheet"  crossorigin="anonymous">
+
+
+	</head>
+<body>
+    <form action="/users/verify" method="post">
+	    <br>
+	    <br>
+	    <h4  class="text-center">Please enter the 6-digit verification code sent via SMS:</h4>
+	    <input  id="otpinput" type="tel" minLength="6" maxLength="6" name="password"  size="6" required >  
+	    <input type="hidden" name="username" value=<%= mobileVar %>  > 
+	 <!-- <input type="hidden" name="username" value=9632015197 >
+	 <input type="hidden" name="password" value=276291 >  -->
+	<div class="d-flex justify-content-around">
+                 <div>
+                     <input class="btn btn-info" type="reset">
+                 </div>
+                 <div>
+                     <button class="btn btn-primary" >Verify</button>
+                 </div>
+             </div>
+        </form>
+	<br>
+	
+      <div class="d-flex justify-content-center"> 
+      <div id="some_div"></div> 
+      </div> 
+      
+      <script>
+
+// OTP Timmings in verify.ejs file
+var timeLeft = 15;
+var elem = document.getElementById('some_div');
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+	document.getElementById("some_div").innerHTML = "<p style='color:#808080' >&nbsp;Didn't Recieved OTP? </p> <a href=/users/login class='btn btn-outline-primary'>Generate new OTP</a>" ;
+        //doSomething();
+    } else {
+	    elem.innerHTML =  "<p style='color:#808080;'> To generate new OTP </p> <button class='btn btn-outline-danger'>&nbsp;" +timeLeft + ' Seconds Left '+ "&nbsp;</button>";
+        timeLeft--;
+    }
+}
+      </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<%- include ("../layouts/adminheader") %>
+
+<h2 class="page-title"> SubCategories </h2>
+<a href="/admin/subcategories/add-subcategory" class="btn btn-info"> Add a new Sub Category!!</a>
+<br><br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SubCategory</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% subcategoriesVar.forEach(function(subcategory){ %>
+            <tr>
+                <td> <%= subcategory.title %> </td>
+                <td> <a href="/admin/subcategories/edit-subcategory/sub/<%= subcategory.id %>" > Edit </a> </td>
+                <td> <a class="confirmDeletion" href="/admin/subcategories/delete-subcategory/sub/<%= subcategory._id %>"> Delete </a> </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+
+<%- include ("../layouts/adminfooter") %>
+
+
+
+
+

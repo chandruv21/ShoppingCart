@@ -1,0 +1,17 @@
+<%- include ("layouts/header") %>
+<br>
+<br>
+<a class="btn btn-primary mt-3" href="/users/admin/ordersearch">Back</a>
+	
+	        <h2 class="m-0">TOTAL AMOUNT:  <b><%= completeOrderVar[0].total_amount %> </b></h2>  
+	        <p class="m-0 "> ORDERID:  <b><%= completeOrderVar[0].orderId %> </b></p>  
+	        <p class="m-0 "> USERNAME:  <b><%= completeOrderVar[0].username %> </b></p>  
+	        <p class="m-0"> MOBILE: <b><%= completeOrderVar[0].mobile %> </b></p>  
+	        <p class="m-0"> ADDRESS: <b><%= completeOrderVar[0].address %> </b></p>  
+	        <p class="m-0"> LATITTUDE <b><%= completeOrderVar[0].latittude %> </b></p>  
+	        <p class="m-0"> LONGITUDE: <b><%= completeOrderVar[0].longitude %> </b></p>  
+	        <p class="m-0"> PRODUCT DETAILS: <b><%= completeOrderVar[0].product %> </b></p>  
+<hr class="m-0">
+<br>
+<%- include ("layouts/footer") %>
+ 

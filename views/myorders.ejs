@@ -1,0 +1,20 @@
+<%- include ("layouts/header") %>
+
+<h1 class="text-center">MyOrders</h1>
+ <div class="row products mb-1"> 
+    <% for(var i = 0 ; i< ordersVar.length; i++) { %>
+            <div class="col-4 col-md-4" > 
+ 	<hr class="m-1">	 
+		<div class="d-flex justify-content-around">
+		<div>
+                <a class=" btn btn-info" href="<%= ordersVar[i]._id %>"> order <%= i+1 %> </a>
+            </div>
+            </div>
+            </div>
+            <% } %>
+    <hr>
+</div>
+
+<br>
+
+<%- include ("layouts/footer") %>

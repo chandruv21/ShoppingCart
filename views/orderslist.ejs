@@ -1,0 +1,14 @@
+<%- include ("layouts/header") %>
+<a class="btn btn-primary mt-3" href="/users/myorders">Back</a>
+<% for(var i = 0 ; i< orderVar.cart.length; i++) { %>
+		<p class="ml-3 p-0" >
+			<img class="rounded mx-auto d-block"  src="<%= orderVar.cart[i].image %>"
+		width=100px height=100px alt="mahadevamart" />
+    		</p>
+	        <p class="m-0 text-center">  <b><%= orderVar.cart[i].title %> </b></p>  
+                <h4 class=" m-0 text-center"> ₹ <%= orderVar.cart[i].price %> x <%= orderVar.cart[i].qty %> =  ₹ <%= orderVar.cart[i].price * orderVar.cart[i].qty %></h4>
+<hr class="m-0">
+<% } %>
+<br>
+<%- include ("layouts/footer") %>
+ 

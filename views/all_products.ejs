@@ -1,0 +1,147 @@
+<%- include ("layouts/header") %>
+<div class='content-desktop'>
+  <img id='logo-desk' style='width:50%;margin-left:25%' src="/images/logo.jpeg">
+</div>
+
+<div class='content-mobile'>
+  <img style=width:100% src="/images/logo.jpeg">
+</div>
+</div>
+<!-- Replace the image 'src' with the images in your project.
+Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
+
+<!--<div class=container>
+<div id="carouselExampleIndicators" class="carousel slide content-desktop" style="border:3px solid gray" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol> 
+  
+  
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <a href='/products/combo' > <img style='width:100%;height:150px'  class='lazyload' data-src="/images/freedel" alt="MahadevaMart"> </a>
+    </div>
+    <div class="carousel-item">
+    <a href='/products/combo' > <img style='width:100%;height:150px' class='lazyload' data-src="/images/fruit-combo.jpeg" alt="MahadevaMart"> </a>
+    </div>
+    <div class="carousel-item">
+<a href='/products/combo'>      <img style='width:100%;height:150px' class='lazyload' data-src="/images/pooja-combo.jpeg" alt="MahadevaMart">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a> 
+</div>
+</div> -->
+
+
+
+<!--<div id="carouselExampleIndicators" class="carousel slide content-mobile" style="border:3px solid gray" data-ride="carousel"> -->
+<div id="carouselExampleIndicators" class="carousel slide" style="border:3px solid gray" data-ride="carousel">
+<!--  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+  </ol> -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <a href='/products/combo' > <img style='width:100%;height:150px' class='lazyload'  data-src="/images/freedel121.png" alt="MahadevaMart"> </a>
+    </div>
+    <div class="carousel-item">
+    <a href='/products/combo' > <img style='width:100%;height:150px' class='lazyload' data-src="/images/fruit-combo-mb.jpg" alt="MahadevaMart"> </a>
+    </div>
+    <div class="carousel-item">
+<a href='/products/combo'>      <img style='width:100%;height:150px' class='lazyload' data-src="/images/pooja-combo-mb.jpg" alt="MahadevaMart"> </a>
+    </div>
+  </div>
+<!--  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a> -->
+</div>
+
+		<div class="col-12 ">
+<div class="row p-0 m-0">
+  <% productsVar.forEach(function(p){ %>
+	<% if(p.category == "pooja-items"){ %>
+	<div class="col-12 col-sm-6 col-lg-4 p-0 m-0 item">
+		<p class="ml-3 p-0 align-items-center" >
+			<div class='p-0'>
+			<img class='ml-1 lazyload' data-src="/product_images/<%=p._id %>/<%= p.image %>"  width="120" height="100" alt="mahadevamart" align="left"/>
+			</div>
+    </p>
+    	<div class="row d-flex justify-content-end">
+			<div class="col-10 ">
+        <p class="text-center font-allproducts h5 " style=color:"#c5a0de"><%= p.title %> <br> MRP: <span style='color:blue;background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, transparent 52.25%);'> ₹ <%= p.dummyprice %> </span> <br> <span style='color:green'> ₹ <%=  parseFloat(p.price).toFixed(2) %> </p>
+        <p class="text-center text-decoration-none font-allproducts h5"><a style="border:1px solid #0056b3; color:#0056b3;font-weight:550 " class="btn btn-outline-primary question add-to-cart" href="/cart/addpi/<%= p.title %>">Add to Cart</a> 
+        </p>
+			</div>
+    </div>
+    <hr class="m-0">
+</div>
+<% } else { %>
+	<% if(p.category == "combo"){ %>
+	<% } else { %>
+	<div class="col-12 col-sm-6 col-lg-4 p-0 m-0 item">
+		<p class="ml-3 p-0 d-flex align-items-center" >
+			<div class='p-0'>
+			<img  class='ml-1 lazyload' data-src="/product_images/<%=p._id %>/<%= p.image %>"  width="120" height="100" alt="mahadevamart" align="left"/>
+			</div>
+    </p>
+    <div class="row d-flex justify-content-end">
+			<div class="col-10">
+        <p class="text-center font-allproducts h5 " style=color:"#c5a0de"><%= p.title %> <br> <%= p.kg %>  <br> <span style='color:blue;background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, transparent 52.25%);'> ₹ <%= p.dummyprice %> </span> <br> <span style='color:green'> ₹ <%=  parseFloat(p.price).toFixed(2) %> </p>
+        <p class="text-center text-decoration-none font-allproducts h5"><a style="border:1px solid #0056b3; color:#0056b3;font-weight:550 " class="btn btn-outline-primary question add-to-cart" href="/cart/add/<%= p.title %>">Add to Cart</a> 
+        </p>
+			</div>
+    </div>
+    <hr class="m-0">
+</div>
+<% } %>
+<% } %>
+    <% }); %>
+<a href=#top>top </a>
+  </div>
+<br>
+<script>
+  $(window).scroll(function() {
+  sessionStorage.scrollTop = $(this).scrollTop();
+});
+
+$(document).ready(function() {
+  if (sessionStorage.scrollTop != "undefined") {
+    $(window).scrollTop(sessionStorage.scrollTop);
+  }
+});
+
+
+function myFunction(){
+	$("img").submit();
+}
+
+</script>
+
+
+<script> 
+$("img.lazyload").lazyload();
+</script> 
+
+
+<%- include ("layouts/footer") %>
+      
+
+
+

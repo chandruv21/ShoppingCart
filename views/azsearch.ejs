@@ -1,0 +1,123 @@
+<%- include ("layouts/header") %>
+<br>
+<form action="/products" method="GET">
+    <div class="ml-3 ">
+        <input autocomplete='off' id='myInput' style=border-radius:10px type="text" name="search" placeholder="Product Search" >
+        <!-- <input type="submit" value="search" class="ml-1 btn btn-primary col-3 col-md-1 "> -->
+        <button style="border-radius:10px" class="ml-2 btn btn-primary"> Search </button>
+    </div>
+</form>
+<br>
+
+
+<script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var products = ["Fruits-combo","Apple","Pomegranate","Orange","Mosambi","Sapota(Cheeku)","Banana","Yelakki Banana","Cycle Agarbatti(10 ₹)","Cycle Agarbatti(20 ₹)","Cycle Agarbatti(50 ₹)","Cycle Sandalum Agarbatti(50 ₹)","Cycle Agarbatti(100 ₹)","BlackStone Agarbatti(10₹)","BlackStone Agarbatti (50₹)","Vasu Agarbatti(10₹)","Vasu Agarbatti(20₹)","Vasu Agarbatti Big","Swarna Mallika Agarbatti(10₹)","Swarna Champa Agarbatti(10₹)","Swarna Champa Agarbatti(50₹)","Ullas Agarbatti(10₹)","Ullas Agarbhatti(50₹)","Gajakesari Agarbatti","Sunday Monday Agarbatti(10₹)","Sunday Monday Agarbatti(50₹)","Shabharimale Agarbatti","Shabharimale Agarbatti Big","Surya Agarbatti","ZedBlack Agarbatti(50₹)","Pineapple Agarbatti(50₹)","Theju Mallige Agrabatti(250 grams)","Agarbatti(250 grams)","White Agarbatti(250 grams)","Karpura(Kapoor) 5₹","Karpura(Kapoor) 10₹","Karpura(Kapoor) 50 grams","Karpura(Kapoor) 100 grams","Karpura(Kapoor) 200 grams","Karpura(Kapoor) 500 grams","Pach Karpura(MRP 25₹)","Shabharimale Cup Sambrani(MRP ₹60)","Lava Kusha Sambrani(MRP ₹70)","Ashika Cup Sambrani Small","Ashika Cup Sambrani Medium","Ashika Cup Sambrani","Naivedya Cup Sambrani( MRP 75₹)","Naivedya Cup Sambrani Small( MRP 000₹)","Cycle Sandalum Sambrani","Loban Sambrani","Nandini Sambrani","Sugandhi Sambrani","VEL Sambrani","Champa Gold(Kallu Sambrani)","Kavade(Kallu) Sambrani","Kavade(Kallu) Sambrani Loose","Marriage arisina Kumkuma","Kumkuma(50 grams)","Arisina (50 grams)","Kumkuma ( 100gram )","Arisina (100 grams)","Gopuram Kumkuma Merun (MRP 16₹)","Gopuram Arisina(MRP 20₹)","Arisina-Kumkuma Smallbox","Gopuram Arisina Box","Basma(50 grams)","Basma(100 grams)","Vibutti","Ganda","Ganda Paste(MRP 30₹)","Ganda Paste CycleBrand","Hanuman Bandara Powder","Hanuman Bandara paste","Hanuman Bandara pure powder","Arisina kombu(50gram)","Vilyadele ( 1 Kattu)","Kalasada Yele(5 piece)","Adike(50 gram)","Gund(Betta) Adike 1 piece","Battalu Adike(50 gram)","Sunna","Anandam Deepa Oil (500 ml)","Anandam Deepa Oil (1000 ml)","Deepa-Oil 200ml (MRP 35₹)","Deepa-Oil 500ml","Deepa-Oil(1Kg)","Pithambari","Gejje Batti(Thuppada Batti)","Batti","Bale Bichhale","Kobbari(100 grams)","Bale Bichhale Set","Belli nagaru chinni nagaru","BiliSasive (100 gram)","Blouse Piece Green","kasu male","Ganga Jala(MRP 20₹)","Pooja-Ghee(100ml)","Pooja-Ghee(200ml)","Pooja-Ghee(450ml)","Pooja-Ghee(900ml)","Rangoli(1Kg)","Bella(Jaggery) 1piece","Yellu Batti(MRP 20₹)","MatchBox","Honey 25ml (MRP 15₹)","Honey 100ml (MRP 48₹) )","Kasthuri matre","Kalasa","Yellow Dara(3 yele)","Kempu dara(3 yele)","Gomatha Chakra(1 piece)","Navarathna and Panchloha","Navarathna and Panchloha Big","Nilagiri Thaila","Rose Water","Rudrakshi","Yanthra","Yanthra Dara","panchpala","Gomutra","Abhisheka Samagri","Drusti Gombe","Homa Bag","Homada Soude","Kamala Beeja (1 Piece)","Basinga","Basingaa","Birthday Plates","Tiffen Plates(10 inches)","Green (Lunch) Plates","Paper Plates(8 inch)","Paper Tea Cup","Navadanya (450 gram) MRP 65 ₹","Navadanya (200 gram) MRP 35 ₹","Navadanya Batte","Navadanya (900 gram)"];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), products);
+</script>
+
+
+
+<%- include ("layouts/footer") %>
+      
+
+

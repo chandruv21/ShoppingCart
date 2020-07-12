@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title> MahadevaMart </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="google-site-verification" content="iTvOkWtkiX2qE7ptsEZf59yGyODXqnA6CB2rtK7cKoE" />
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/style.min.css">
+		 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		 <!-- Google fonts -->	
+		 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet"> 
+		 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+		 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script> 
+		  <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	</head>
+<body id=buypagebody>
+<nav class="fixed-bottom navbar navbar-expand  p-0">
+		<div class="d-flex justify-content-around mr-auto">
+			<div>
+				<p class="p-0" >
+					<a class="nav-link p-0 bottom-btn" href="http://mahadevamart.in">
+						&nbsp;  <i style="color:#808080" class="fas fa-home"></i> <br>
+					<small style="color:#808080" class="text-center p-0"> Home </small> </a>
+				</p>
+			</div>
+			<div>
+			   <p class="p-0">  
+				<a class="nav-link p-0 bottom-btn shopping-cart" href="/cart/checkout">
+					&emsp;<i style="color:#808080" class="fas fa-shopping-basket"></i> 
+					<% if(typeof cart !== "undefined") { %>
+					<span class="badge badge-danger">
+						<%= cart.length %>
+					</span><br>
+					<% } else { %>
+					<span><span> <br>
+					<% } %> 
+			&nbsp;	<small style="color:#808080" class="text-center;">My cart </small> </a>
+		           </p>
+			</div>
+			<div>
+			<p class="p-0">
+				<a class="nav-link p-0 bottom-btn" href="/cart/azsearch">
+				&nbsp; <i style="color:#808080" class="fas fa-search"></i> <br>
+				<small style="color:#808080" class="text-center">  Search  </small> </a>
+			</p>
+			</div>
+             </div>
+</nav>
+
+	<div class="container ">
+		<%- messages('messages', locals) %>
+		<% if(errors){ %>
+			<% errors.forEach(function(error){ %>
+			  <div class="alert alert-danger">
+				<%= error.msg %>
+			  </div>
+		   <% }); %>
+		  <% } %>
+		
+       </div>
+		<div class="col-12 ">
+
+ 
+<div class="container pt-2">
+     <div class="row">
+        <div class="mx-auto">
+        <form action="/cart/cod" method="post">
+		<br>
+        <div class="form-group p-0" >
+		<p onclick="getlocation();"  class="btn btn-success btn-lg form-control " > Your Location(GPS)</p> <br> 
+	</div>
+		<p id="gettingloc" class='p-0' style="display:none;text-align:center" > Getting Your Location... </p>
+ 	<div id=locbuynow style="display:none;">
+	<div>
+        <button type="submit" class="btn btn-block btn-lg btn-primary ">Buy Now</button>
+	</div>
+	</div>  
+      </form>
+
+        <form id="d2" style="display:none" class='p-0' action="/cart/cod" method="post">
+	<div class="form-group p-0">
+          <label for="address"> Address:</label>
+          <input type="text" class="form-control " id="address"  placeholder="Type your address here" name="address" required>
+        </div>
+	<div class="d-flex justify-content-center">
+	<div>
+        <button type="submit" class="btn  btn-primary">Buy Now</button>
+	</div>  
+	</div> 
+      </form>
+	    </div>
+	</div>
+    </div>
+	    </div>
+	</div>
+    </div>
+
+
+    
+  
+
+
+
+    <div class='fixedbuypageimages'>
+<hr class="py-1 m-0">
+<h4 class="text-center p-0"> <b> WE ACCEPT DIGITAL PAYMENTS <b> </h4> 
+<div class="d-flex justify-content-around justify-content-md-center">
+<div>
+<img src="/images/phonepe.png" width="150px" height=80px style="background-color:white">
+</div>
+<div>
+<img  style="padding-top:10px" src="/images/gpay.png" width="63px" height=60px style="background-color:white">
+</div>
+</div>
+<div class="d-flex justify-content-around justify-content-md-center">
+<div>
+<img src="/images/paytm.jpg" width="120px" height=70px style="background-color:whitei;padding-left:30px">
+</div>
+<div>
+<img src="/images/bhim.jpg" width="120px" height=70px style="background-color:white">
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+      <script>
+
+// OTP Timmings in verify.ejs file
+//var timeLeft = 4;
+//var elem = document.getElementById('locationbuynow');
+//var timerId = setInterval(countdown, 1000);
+
+//function countdown() {
+//    if (timeLeft == -1) {
+//        clearTimeout(timerId);
+//	document.getElementById("locationbuynow").innerHTML = "<button type='submit' class='btn btn-lg btn-primary'> Buy Now</button>" ;
+//        //doSomething();
+//    } else {
+//	    elem.innerHTML =  "<p> Getting Your Location </p>";
+//        timeLeft--;
+//    }
+//}
+      </script>
+
+<script src="/js/main.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+</body>
+</html>
+

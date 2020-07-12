@@ -1,0 +1,11 @@
+<%- include ("layouts/header") %>
+<br>
+<form action="/users/admin/orders" method="GET">
+    <div class="ml-3 d-flex justify-content-center">
+        <input style=border-radius:10px type="text" name="order" placeholder="ORDERID" class="col-8 col-md-5">
+        <!-- <input type="submit" value="search" class="ml-1 btn btn-primary col-3 col-md-1 "> -->
+        <button style="border-radius:10px" class="ml-2 btn btn-primary col-3 col-md-1 "> Find </button>
+    </div>
+</form>
+
+<%- include ("layouts/footer") %>

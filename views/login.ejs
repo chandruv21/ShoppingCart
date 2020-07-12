@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title> MahadevaMart </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="google-site-verification" content="iTvOkWtkiX2qE7ptsEZf59yGyODXqnA6CB2rtK7cKoE" />
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+<body>
+
+<nav class="fixed-top navbar navbar-expand  p-0">
+			<div>
+				<p style="padding-top:10px;padding-left:20px" >
+					<a class="nav-link p-0 bottom-btn" href="http://mahadevamart.in">
+						&nbsp;  <i style="color:#888888" class="fas fa-home"></i> <br>
+					<small style="color:#888888" class="text-center p-0"> Home </small> </a>
+				</p>
+			</div>
+</nav>
+	<div class="container">
+	<br>
+	<br>
+	<br>
+		<%- messages('messages', locals) %>
+		<% if(errors){ %>
+			<% errors.forEach(function(error){ %>
+			  <div class="alert alert-danger">
+				<%= error.msg %>
+			  </div>
+		   <% }); %>
+		  <% } %>
+		
+       </div>
+
+	<!-- <h1 class=text-center style="color:#0056d0;margin-top:10%" > MahadevaMart </h1> -->
+<h1 class=text-center> <%- titleVar %> </h1>
+
+<div class="container pt-2">
+     <div class="row">
+        <div class="mx-auto">
+             <form action="/users/login" method="post">
+               <div class="form-group">
+                 <label>Mobile</label>
+                  <input class="form-control" type="tel" name="mobile" minlength="10"  maxlength="10"  placeholder="Mobile Number" required> 
+    		</div>
+		<div class="form-group">
+    			<button type="submit" class="btn btn-outline-primary btn-lg btn-block">Login</button>
+		</div>
+		</form>
+			<p>Don't have an account? <a href="/users/register" class="btn btn-outline-info">Sign Up</a></p>
+	    </div>
+	</div>
+    </div>
+
+    
+  
+<!--    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password">
+    </div> -->
+
+
+</body>
+</html>
+

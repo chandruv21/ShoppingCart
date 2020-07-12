@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title> MahadevaMart </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="google-site-verification" content="iTvOkWtkiX2qE7ptsEZf59yGyODXqnA6CB2rtK7cKoE" />
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+<body>
+<nav class="fixed-top navbar navbar-expand  p-0">
+			<div>
+				<p style="padding-top:10px;padding-left:20px" >
+					<a class="nav-link p-0 bottom-btn" href="http://mahadevamart.in">
+						&nbsp;  <i style="color:#888888" class="fas fa-home"></i> <br>
+					<small style="color:#888888" class="text-center p-0"> Home </small> </a>
+				</p>
+			</div>
+</nav>
+	<div class="container">
+	<br>
+	<br>
+	<br>
+		<%- messages('messages', locals) %>
+		<% if(errors){ %>
+			<% errors.forEach(function(error){ %>
+			  <div class="alert alert-danger">
+				<%= error.msg %>
+			  </div>
+		   <% }); %>
+		  <% } %>
+		
+       </div>
+
+<!-- <h1 class=text-center style="color:#0056d0;margin-top:8%">MahadevaMart</h1> -->
+<h1 class="text-center p-0"> <%- titleVar %> </h1>
+<!-- <p class="text-center p-0"> Name must consist of only Alphabetical Characters (space,special characters, and Numbers are not allowed)</p> -->
+<div class="container pt-2">
+   <div class="row">
+      <div class="mx-auto">
+<form action="/users/register" method="post">
+
+<!--    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name">
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
+    </div>  -->
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name" required>
+    </div>
+
+    <div class="form-group">
+        <label>Mobile Number:</label>
+        <input type="tel" name="mobile" class="form-control" minLength=10 maxLength=10 placeholder="Mobile Number" required>
+    </div>
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block" >Register</button>
+</form>
+<br>
+	<h6>&emsp;&nbsp;Already Registered? <a href="/users/login" class="btn btn-outline-info">Login</a></h6>
+
+</div>
+	</div>
+</div>
+

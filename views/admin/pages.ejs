@@ -1,0 +1,57 @@
+<%- include ("../layouts/adminheader") %>
+
+<h2 class="page-title"> Pages </h2>
+<a href="/admin/pages/add-page" class="btn btn-info"> Add a new Page!!</a>
+<br><br>
+
+<table class="table table-striped sorting">
+    <thead>
+        <tr class="home">
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% fetchedPagesVar.forEach(function(fetchedPage){ %>
+            <tr id="id_<%= fetchedPage._id %>" class="<%= fetchedPage.slug %>" >
+                <td> <%= fetchedPage.title %> </td>
+                <td> <a href="/admin/pages/edit-page/<%= fetchedPage.id %>" > Edit </a> </td>
+                <% if(fetchedPage.slug == "home"){ %>
+                    <td></td>
+                <% } else {%>
+                    <td> <a class="confirmDeletion" href="/admin/pages/delete-page/<%= fetchedPage._id %>"> Delete </a> </td>
+                <% } %>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<script  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"> </script>
+<script>
+    // To sort in serial order and to drag the tr's.
+    $('tbody').sortable({
+        // Selecting all the tr except .home class tr
+        items: "tr:not('.home')",
+        placeholder: "ui-state-highlight",
+        update: function() {
+            var ids = $('tbody').sortable("serialize");
+            var url = "/admin/pages/reorder-page";
+
+            $.post(url, ids);
+        }
+    });
+</script>
+
+ <script type="text/javascript">
+
+    $('tbody').sortable();
+  
+  </script> 
+
+<%- include ("../layouts/adminfooter") %>
+
+
+
+
+
